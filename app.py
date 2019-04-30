@@ -6,12 +6,12 @@ print("----MENU----\n")
 experienced = []
 inexperienced = []
 
-for player in constants.PLAYERS:
+for player in constants.PLAYERS: # split experienced and inexperienced players in dictionary
     if player['experience'] == 'YES':
-        player['experience'] = True
-        player['height'] = player['height'].split(" ")
+        player['experience'] = True # change experience to boolean
+        player['height'] = player['height'].split(" ") # change height number to integer
         player['height'][0] = int(player['height'][0])
-        player['guardians'] = player['guardians'].replace("and", ",")
+        player['guardians'] = player['guardians'].replace("and", ",") # remove 'and' from guardian list
         experienced.append(player)
     if player['experience'] == 'NO':
         player['experience'] = False
@@ -23,6 +23,8 @@ for player in constants.PLAYERS:
 panthers = []
 bandits = []
 warriors = []
+
+# allocate experienced and inexperienced to team varaibles without duplicates
 
 for player in experienced:
     if len(panthers) < 3:
@@ -51,7 +53,7 @@ for player in inexperienced:
         warriors.append(player) 
     
      
-def stats(team):
+def stats(team): # function to calcualte the number of players/experienced/inexperienced/average height and list of players/guardians
     player_list = []
     experienced_list = []
     inexperienced_list = []
