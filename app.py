@@ -1,5 +1,27 @@
 import constants
 
+cleaned_data = []
+
+
+def clean_data(players):
+    for player in players:
+        if player['experience'] == 'YES':
+            player['experience'] = True
+            player['height'] = player['height'].split(" ")
+            player['height'][0] = int(player['height'][0])
+            player['guardians'] = player['guardians'].replace("and", ",")
+            cleaned_data.append(player)
+        if player['experience'] == 'NO':
+            player['experience'] = False
+            player['height'] = player['height'].split(" ")
+            player['height'][0] = int(player['height'][0])
+            player['guardians'] = player['guardians'].replace("and", ",")
+            cleaned_data.append(player)
+
+            
+clean_data(constants.PLAYERS)
+
+
 def main():
     
     print("BASKETBALL TEAM STATS TOOL\n")
@@ -9,22 +31,11 @@ def main():
     experienced = []
     inexperienced = []
     
-    players_in_list = constants.PLAYERS
-    
-    for player in players_in_list:
-        if player['experience'] == 'YES':
-            player['experience'] = True
-            player['height'] = player['height'].split(" ")
-            player['height'][0] = int(player['height'][0])
-            player['guardians'] = player['guardians'].replace("and", ",")
+    for player in cleaned_data:
+        if player['experience'] == True:
             experienced.append(player)
-        if player['experience'] == 'NO':
-            player['experience'] = False
-            player['height'] = player['height'].split(" ")
-            player['height'][0] = int(player['height'][0])
-            player['guardians'] = player['guardians'].replace("and", ",")
+        if player['experience'] == False:
             inexperienced.append(player)
-    
             
     panthers = []
     bandits = []
@@ -150,4 +161,4 @@ def stats(team):
 
 if __name__ == '__main__':
     main()
-    
+
