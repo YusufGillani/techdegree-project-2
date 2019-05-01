@@ -1,59 +1,64 @@
 import constants
 
-print("BASKETBALL TEAM STATS TOOL\n")
-print("----MENU----\n")
+if __name__ == "__main__":
+
+    print("BASKETBALL TEAM STATS TOOL\n")
+    print("----MENU----\n")
+        
     
-experienced = []
-inexperienced = []
-
-for player in constants.PLAYERS: # split experienced and inexperienced players in dictionary
-    if player['experience'] == 'YES':
-        player['experience'] = True # change experience to boolean
-        player['height'] = player['height'].split(" ") # change height number to integer
-        player['height'][0] = int(player['height'][0])
-        player['guardians'] = player['guardians'].replace("and", ",") # remove 'and' from guardian list
-        experienced.append(player)
-    if player['experience'] == 'NO':
-        player['experience'] = False
-        player['height'] = player['height'].split(" ")
-        player['height'][0] = int(player['height'][0])
-        player['guardians'] = player['guardians'].replace("and", ",")
-        inexperienced.append(player)
-        
-panthers = []
-bandits = []
-warriors = []
-
-# allocate experienced and inexperienced to team varaibles without duplicates
-
-for player in experienced:
-    if len(panthers) < 3:
-        panthers.append(player)
-        experienced.pop(0)
-
-for player in experienced:
-    if len(bandits) < 3:
-        bandits.append(player)
-        experienced.pop(0)
-        
-for player in experienced:
-        warriors.append(player)
-
-for player in inexperienced:
-    if len(panthers) < 6:
-        panthers.append(player)
-        inexperienced.pop(0)
-
-for player in inexperienced:
-    if len(bandits) < 6:
-        bandits.append(player)
-        inexperienced.pop(0)
-        
-for player in inexperienced:
-        warriors.append(player) 
+    experienced = []
+    inexperienced = []
     
-     
-def stats(team): # function to calcualte the number of players/experienced/inexperienced/average height and list of players/guardians
+    players_in_list = constants.PLAYERS
+    
+    for player in players_in_list:
+        if player['experience'] == 'YES':
+            player['experience'] = True
+            player['height'] = player['height'].split(" ")
+            player['height'][0] = int(player['height'][0])
+            player['guardians'] = player['guardians'].replace("and", ",")
+            experienced.append(player)
+        if player['experience'] == 'NO':
+            player['experience'] = False
+            player['height'] = player['height'].split(" ")
+            player['height'][0] = int(player['height'][0])
+            player['guardians'] = player['guardians'].replace("and", ",")
+            inexperienced.append(player)
+    
+            
+    panthers = []
+    bandits = []
+    warriors = []
+    
+    for player in experienced:
+        if len(panthers) < 3:
+            panthers.append(player)
+            experienced.pop(0)
+    
+    for player in experienced:
+        if len(bandits) < 3:
+            bandits.append(player)
+            experienced.pop(0)
+            
+    for player in experienced:
+            warriors.append(player)
+    
+    for player in inexperienced:
+        if len(panthers) < 6:
+            panthers.append(player)
+            inexperienced.pop(0)
+    
+    for player in inexperienced:
+        if len(bandits) < 6:
+            bandits.append(player)
+            inexperienced.pop(0)
+            
+    for player in inexperienced:
+            warriors.append(player) 
+    
+        
+        
+def stats(team):
     player_list = []
     experienced_list = []
     inexperienced_list = []
@@ -89,52 +94,56 @@ def stats(team): # function to calcualte the number of players/experienced/inexp
     print(", ".join(guardians_list))
 
 
-start = True
-
-while start:
-    try:
-        print("")
-        print("Here are your choices:")
-        print("1) Display Team Stats")
-        print("2) Quit\n")
-        first_option = input("Enter an option > ")
-        first_option = int(first_option)
-        if first_option == 2:
-            print("See you next time, Goodbye!")
-            break
-        elif first_option > 2 or first_option < 1:
+if __name__ == "__main__":
+    
+    start = True
+    
+    
+    while start:
+        try:
             print("")
-            print("Invalid number! please try again")
-            continue
-        
-        while first_option == 1:
-            print("")
-            for number, team in enumerate(constants.TEAMS, 1):
-                print("{}) {}".format(number, team))
-            print("")
-            second_option = input("Enter an option > ")
-            second_option = int(second_option)
-            print("")
+            print("Here are your choices:")
+            print("1) Display Team Stats")
+            print("2) Quit\n")
+            first_option = input("Enter an option > ")
+            first_option = int(first_option)
+            if first_option == 2:
+                print("See you next time, Goodbye!")
+                break
+            elif first_option > 2 or first_option < 1:
+                print("")
+                print("Invalid number! please try again")
+                continue
             
-            if second_option == 1:
-                print("Team: {} Stats".format(constants.TEAMS[0]))
-                print("--------------------")
-                stats(panthers)
-            elif second_option == 2:
-                print("Team: {} Stats".format(constants.TEAMS[1]))
-                print("--------------------")
-                stats(bandits)
-            elif second_option == 3:
-                print("Team: {} Stats".format(constants.TEAMS[2]))
-                print("--------------------")
-                stats(warriors)
-            else:
-                print("Invalid entry! Please try again")
+            while first_option == 1:
+                teams_in_list = constants.TEAMS
+                print("")
+                for number, team in enumerate(teams_in_list, 1):
+                    print("{}) {}".format(number, team))
+                print("")
+                second_option = input("Enter an option > ")
+                second_option = int(second_option)
+                print("")
                 
+                if second_option == 1:
+                    print("Team: {} Stats".format(teams_in_list[0]))
+                    print("--------------------")
+                    stats(panthers)
+                elif second_option == 2:
+                    print("Team: {} Stats".format(teams_in_list[1]))
+                    print("--------------------")
+                    stats(bandits)
+                elif second_option == 3:
+                    print("Team: {} Stats".format(teams_in_list[2]))
+                    print("--------------------")
+                    stats(warriors)
+                else:
+                    print("Invalid entry! Please try again")
+                    
+                print("")
+                third_option = input("Press any key to continue...")
+                break 
+        except ValueError:
             print("")
-            third_option = input("Press any key to continue...")
-            break 
-    except ValueError:
-        print("")
-        print("Please enter numbers only")
-        continue
+            print("Please enter numbers only")
+            continue
