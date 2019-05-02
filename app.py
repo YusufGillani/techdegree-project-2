@@ -22,6 +22,42 @@ def clean_data(players):
 clean_data(constants.PLAYERS)
 
 
+def stats(team):
+    player_list = []
+    experienced_list = []
+    inexperienced_list = []
+    guardians_list = []
+    height_numbers = []
+    
+    print("Total players {}".format(len(team)))
+    
+    for players in team:
+        height_numbers.append(players['height'][0])
+    
+    print("Average height of team {}: ".format((sum(height_numbers)) / (len(height_numbers))))
+    
+    for players in team:
+        if players['experience'] == True:
+            experienced_list.append(players['experience'])
+        elif players['experience'] == False:
+            inexperienced_list.append(players['experience'])
+            
+    print("Total Experienced players {}".format(len(experienced_list)))
+    print("Total Inexperienced players {}\n".format(len(inexperienced_list)))   
+    
+    print("Players on Team:") 
+    for players in team:
+        player_list.append(players['name'])
+    print(", ".join(player_list))
+    
+    print("")
+    
+    print("Guardians on Team:")
+    for players in team:
+        guardians_list.append(players['guardians'])
+    print(", ".join(guardians_list))
+
+    
 def main():
     
     print("BASKETBALL TEAM STATS TOOL\n")
@@ -120,43 +156,6 @@ def main():
             print("Please enter numbers only")
             print("")
             continue
-    
-        
-        
-def stats(team):
-    player_list = []
-    experienced_list = []
-    inexperienced_list = []
-    guardians_list = []
-    height_numbers = []
-    
-    print("Total players {}".format(len(team)))
-    
-    for players in team:
-        height_numbers.append(players['height'][0])
-    
-    print("Average height of team {}: ".format((sum(height_numbers)) / (len(height_numbers))))
-    
-    for players in team:
-        if players['experience'] == True:
-            experienced_list.append(players['experience'])
-        elif players['experience'] == False:
-            inexperienced_list.append(players['experience'])
-            
-    print("Total Experienced players {}".format(len(experienced_list)))
-    print("Total Inexperienced players {}\n".format(len(inexperienced_list)))   
-    
-    print("Players on Team:") 
-    for players in team:
-        player_list.append(players['name'])
-    print(", ".join(player_list))
-    
-    print("")
-    
-    print("Guardians on Team:")
-    for players in team:
-        guardians_list.append(players['guardians'])
-    print(", ".join(guardians_list))
 
 
 if __name__ == '__main__':
