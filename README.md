@@ -30,3 +30,20 @@ NOTE: This does not mean everything written has to be contained within Dunder Ma
   * Total number of players on that team
   * The player names of that team (joined together as a comma-separated string not displayed as a List object.)
   * The formatting you use to display is up to you, though should be readable using spacing.
+
+## Exceeds Expectations
+
+* Additionally clean:
+  * the guardians string so that it becomes a List of strings. Remove the and between the names and storing each guardian in a List   together for that player.
+* Also balance players in a way that also ensures teams have equal numbers of experienced vs inexperienced players
+  * Teams still must be balanced with the same number of players.
+  * Each team should have the same number of experienced vs. experienced players.
+* The user should be re-prompted with the main menu until they decide to "Quit the program".
+* Team stats should additionally display:
+  * Total number of inexperienced players
+  * Total number of experienced players
+  * Average height of the team
+  * The guardian names of all the players on the team (joined together as a comma-separated string not displayed as a List object).
+  * Math formula for average height: (sum of all the heights) / (total players)
+  
+  
