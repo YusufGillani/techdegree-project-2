@@ -17,7 +17,7 @@ for player in players_in_list:
     else:
         player['experience'] = False
     cleaned_data.append(player)
-         
+
 
 def stats(team):
     player_list = []
@@ -157,4 +157,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
