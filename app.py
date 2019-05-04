@@ -3,12 +3,29 @@ from copy import deepcopy
 # https://www.geeksforgeeks.org/copy-python-deep-copy-shallow-copy/
 
 
+players_in_list = deepcopy(constants.PLAYERS) 
+cleaned_data = []
+
+for player in players_in_list:
+    player['height'] = player['height'].split()
+    player['height'] = player['height'].pop(0)
+    player['height'] = int(player['height'])
+    player['guardians'] = player['guardians'].split(" and")
+    if player['experience'] == 'YES':
+        player['experience'] = True
+    else:
+        player['experience'] = False
+    cleaned_data.append(player)
+
+    
 def stats(team):
     player_list = []
     experienced_list = []
     inexperienced_list = []
     guardians_list = []
     height_numbers = []
+    guardians_list = []   
+    guardians = []
     
     print("Total players {}".format(len(team)))
     
@@ -34,10 +51,13 @@ def stats(team):
     print("")
     
     print("Guardians on Team:")
-    for players in team:
-        guardians_list.append(players['guardians'])
-    print(", ".join(guardians_list))
-
+    for player in team:
+        guardians_list.append(player['guardians'])
+    for i in guardians_list:
+        for j in i:
+            guardians.append(j)
+    print(", ".join(guardians))
+            
     
 def main():
     
@@ -51,7 +71,7 @@ def main():
         player['height'] = player['height'].split()
         player['height'] = player['height'].pop(0)
         player['height'] = int(player['height'])
-        player['guardians'] = player['guardians'].replace("and", ",")
+        player['guardians'] = player['guardians'].split(" and ")
         if player['experience'] == 'YES':
             player['experience'] = True
         else:
@@ -152,5 +172,5 @@ def main():
             continue
 
 if __name__ == '__main__':
-    main()
+    main()  
     
