@@ -1,26 +1,23 @@
 import constants
 from copy import deepcopy
 # https://www.geeksforgeeks.org/copy-python-deep-copy-shallow-copy/
-# I wasn't entirely sure how to not alter the imported data so I did some research and found I could use deepcopy.
 
-players_in_list = deepcopy(constants.PLAYERS) 
+
+players_in_list = deepcopy(constants.PLAYERS) # I wasn't entirely sure how to not alter the imported data so I did some research and found I could use deepcopy.
 
 cleaned_data = []
 
 for player in players_in_list:
+    player['height'] = player['height'].split()
+    player['height'] = player['height'].pop(0)
+    player['height'] = int(player['height'])
+    player['guardians'] = player['guardians'].replace("and", ",")
     if player['experience'] == 'YES':
         player['experience'] = True
-        player['height'] = player['height'].split(" ")
-        player['height'][0] = int(player['height'][0])
-        player['guardians'] = player['guardians'].replace("and", ",")
-        cleaned_data.append(player)
-    if player['experience'] == 'NO':
+    else:
         player['experience'] = False
-        player['height'] = player['height'].split(" ")
-        player['height'][0] = int(player['height'][0])
-        player['guardians'] = player['guardians'].replace("and", ",")
-        cleaned_data.append(player)
-
+    cleaned_data.append(player)
+         
 
 def stats(team):
     player_list = []
@@ -32,7 +29,7 @@ def stats(team):
     print("Total players {}".format(len(team)))
     
     for players in team:
-        height_numbers.append(players['height'][0])
+        height_numbers.append(players['height'])
     
     print("Average height of team {}: ".format((sum(height_numbers)) / (len(height_numbers))))
     
@@ -160,3 +157,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
