@@ -1,25 +1,25 @@
 import constants
+from copy import deepcopy
+# https://www.geeksforgeeks.org/copy-python-deep-copy-shallow-copy/
+# I wasn't entirely sure how to not alter the imported data so I did some research and found I could use deepcopy.
+
+players_in_list = deepcopy(constants.PLAYERS) 
 
 cleaned_data = []
 
-
-def clean_data(players):
-    for player in players:
-        if player['experience'] == 'YES':
-            player['experience'] = True
-            player['height'] = player['height'].split(" ")
-            player['height'][0] = int(player['height'][0])
-            player['guardians'] = player['guardians'].replace("and", ",")
-            cleaned_data.append(player)
-        if player['experience'] == 'NO':
-            player['experience'] = False
-            player['height'] = player['height'].split(" ")
-            player['height'][0] = int(player['height'][0])
-            player['guardians'] = player['guardians'].replace("and", ",")
-            cleaned_data.append(player)
-
-            
-clean_data(constants.PLAYERS)
+for player in players_in_list:
+    if player['experience'] == 'YES':
+        player['experience'] = True
+        player['height'] = player['height'].split(" ")
+        player['height'][0] = int(player['height'][0])
+        player['guardians'] = player['guardians'].replace("and", ",")
+        cleaned_data.append(player)
+    if player['experience'] == 'NO':
+        player['experience'] = False
+        player['height'] = player['height'].split(" ")
+        player['height'][0] = int(player['height'][0])
+        player['guardians'] = player['guardians'].replace("and", ",")
+        cleaned_data.append(player)
 
 
 def stats(team):
@@ -160,4 +160,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
