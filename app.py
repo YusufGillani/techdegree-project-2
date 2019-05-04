@@ -3,22 +3,6 @@ from copy import deepcopy
 # https://www.geeksforgeeks.org/copy-python-deep-copy-shallow-copy/
 
 
-players_in_list = deepcopy(constants.PLAYERS) # I wasn't entirely sure how to not alter the imported data so I did some research and found I could use deepcopy.
-
-cleaned_data = []
-
-for player in players_in_list:
-    player['height'] = player['height'].split()
-    player['height'] = player['height'].pop(0)
-    player['height'] = int(player['height'])
-    player['guardians'] = player['guardians'].replace("and", ",")
-    if player['experience'] == 'YES':
-        player['experience'] = True
-    else:
-        player['experience'] = False
-    cleaned_data.append(player)
-
-
 def stats(team):
     player_list = []
     experienced_list = []
@@ -59,7 +43,20 @@ def main():
     
     print("BASKETBALL TEAM STATS TOOL\n")
     print("----MENU----\n")
-        
+    
+    players_in_list = deepcopy(constants.PLAYERS) 
+    cleaned_data = []
+
+    for player in players_in_list:
+        player['height'] = player['height'].split()
+        player['height'] = player['height'].pop(0)
+        player['height'] = int(player['height'])
+        player['guardians'] = player['guardians'].replace("and", ",")
+        if player['experience'] == 'YES':
+            player['experience'] = True
+        else:
+            player['experience'] = False
+        cleaned_data.append(player)
     
     experienced = []
     inexperienced = []
@@ -154,6 +151,6 @@ def main():
             print("")
             continue
 
-
 if __name__ == '__main__':
     main()
+    
