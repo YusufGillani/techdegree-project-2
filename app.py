@@ -2,21 +2,6 @@ import constants
 from copy import deepcopy
 # https://www.geeksforgeeks.org/copy-python-deep-copy-shallow-copy/
 
-
-players_in_list = deepcopy(constants.PLAYERS) 
-cleaned_data = []
-
-for player in players_in_list:
-    player['height'] = player['height'].split()
-    player['height'] = player['height'].pop(0)
-    player['height'] = int(player['height'])
-    player['guardians'] = player['guardians'].split(" and")
-    if player['experience'] == 'YES':
-        player['experience'] = True
-    else:
-        player['experience'] = False
-    cleaned_data.append(player)
-
     
 def stats(team):
     player_list = []
